@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>9 to 5 Site</h1>
+  <div id="counter">Loading...</div>
+  <p>Time until closing</p>
+  <p class="quote">All times shown are based on {{timezone}}</p>
+</div>
+
+<script>
+  const serverTime = new Date('{{serverTime}}');
+  const closingTime = new Date('{{closingTime}}');
+
+  function updateCounter() {
+    const timestamp = Date.now();
+    const timeDiff = timestamp - serverTime.getTime();
+    const currentTime = new Date(timestamp);
+    const diff = closingTime.getTime() - currentTime.getTime();
+    
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    
+    document.getElementById('counter').textContent = 
+      `${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
+    
+    if (hours <= 0 && minutes <= 0 && seconds <= 0) {
+      location.reload();
+    }
+  }
+
+  setInterval(updateCounter, 1000);
+  updateCounter();
+</script>

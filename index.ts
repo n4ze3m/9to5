@@ -31,8 +31,7 @@ app.use((req, res, next) => {
         res.locals.timezone = userTimezone;
         next();
     } else {
-        res.status(418).send(`Our office is currently closed in ${userTimezone} (${now.toFormat('HH:mm:ss')}).
-
+        res.status(418).send(`Currently closed in ${userTimezone} (${now.toFormat('HH:mm:ss')}).
 Please try again during business hours (${START_HOUR}:00-${END_HOUR}:00).`);
     }
 });

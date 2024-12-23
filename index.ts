@@ -11,7 +11,7 @@ const DEFAULT_COUNTRY = "US"
 const START_HOUR = 9
 const END_HOUR = 17
 const RICK_ROLL_URL = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-    
+
 const getTimezoneFromCountry = (countryCode: string) => {
     const timezones = momentTimezone.tz.zonesForCountry(countryCode)
     return timezones && timezones.length > 0 ? timezones[0] : DEFAULT_TIMEZONE
